@@ -8,7 +8,7 @@ export default function LoginPage() {
     <main className="relative min-h-screen flex items-center justify-center px-6 py-16 overflow-hidden">
       <MotionBackground />
       <FloatingHearts />
-      <CatIllustration className="hidden sm:block absolute bottom-[4%] right-[6%] w-44 md:w-56 pointer-events-none" />
+      <CatIllustration className="hidden sm:block absolute bottom-[4%] right-[6%] w-44 md:w-56 pointer-events-auto cursor-pointer z-10" />
       <LoginCard />
     </main>
   );

@@ -42,14 +42,17 @@ export default function LoginCard() {
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 24 }}
+      initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.7, ease: "easeOut" }}
-      className="glass-strong rounded-[28px] shadow-glass px-8 py-10 w-full max-w-sm"
+      transition={{ duration: 0.6, ease: "easeOut" }}
+      className="glass-strong rounded-[28px] shadow-[0_20px_50px_rgba(245,49,99,0.14)] border border-white/80 px-8 py-10 w-full max-w-sm relative z-10 backdrop-blur-xl"
     >
       <div className="flex flex-col items-center mb-8">
-        <span className="text-4xl mb-3 animate-pulseSoft">♡</span>
-        <h1 className="font-display text-2xl italic text-wine">Welcome back</h1>
+        <span className="text-4xl mb-3 animate-pulseSoft filter drop-shadow-[0_4px_12px_rgba(245,49,99,0.3)]">
+          ♡
+        </span>
+        <h1 className="font-display text-2xl italic text-wine tracking-wide">Welcome back</h1>
+        <p className="text-xs text-inkrose/60 mt-1">Our Little World awaits ✨</p>
       </div>
 
       <form onSubmit={handleSubmit} className="flex flex-col gap-4">
@@ -64,7 +67,7 @@ export default function LoginCard() {
             value={id}
             onChange={(e) => setId(e.target.value)}
             required
-            className="mt-1 w-full rounded-2xl bg-white/70 border border-white px-4 py-3 text-inkrose placeholder:text-inkrose/40 focus:bg-white/90 transition-colors"
+            className="mt-1 w-full rounded-2xl bg-white/70 border border-white/90 px-4 py-3 text-inkrose placeholder:text-inkrose/40 focus:bg-white/95 focus:ring-2 focus:ring-rose/30 focus:border-rose/50 outline-none transition-all duration-300 shadow-inner"
             placeholder="Dudee>"
           />
         </div>
@@ -80,17 +83,19 @@ export default function LoginCard() {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
-            className="mt-1 w-full rounded-2xl bg-white/70 border border-white px-4 py-3 text-inkrose placeholder:text-inkrose/40 focus:bg-white/90 transition-colors"
+            className="mt-1 w-full rounded-2xl bg-white/70 border border-white/90 px-4 py-3 text-inkrose placeholder:text-inkrose/40 focus:bg-white/95 focus:ring-2 focus:ring-rose/30 focus:border-rose/50 outline-none transition-all duration-300 shadow-inner"
             placeholder="••••••••••"
           />
         </div>
 
         {error && (
-          <p className="text-sm text-wine bg-blush/40 rounded-xl px-3 py-2 text-center">{error}</p>
+          <p className="text-xs text-wine bg-blush/50 border border-rose/20 rounded-xl px-3 py-2 text-center">
+            {error}
+          </p>
         )}
 
         <GlassButton type="submit" disabled={loading} className="mt-2 self-center">
-          {loading ? "Checking..." : "Enter"}
+          {loading ? "Checking..." : "Enter →"}
         </GlassButton>
       </form>
     </motion.div>
