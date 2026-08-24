@@ -1,0 +1,852 @@
+[
+  {
+    "id": "Q001",
+    "question": "Who is more likely to forget where they kept their phone?",
+    "type": "choice",
+    "options": [
+      "Dudee",
+      "Biscoff",
+      "Both, equally chaotic",
+      "Neither, we're perfect"
+    ],
+    "answer": "Biscoff",
+    "category": "Quirks",
+    "difficulty": "easy",
+    "level": 1,
+    "correctResponse": "Obviously you. Don't act surprised. 😭❤️",
+    "wrongResponse": "Interesting answer... I have evidence against you. 👀"
+  },
+  {
+    "id": "Q002",
+    "question": "Who takes longer to decide what to eat?",
+    "type": "choice",
+    "options": [
+      "Dudee",
+      "Biscoff",
+      "Both",
+      "Whoever is hungrier"
+    ],
+    "answer": "Both",
+    "category": "Everyday",
+    "difficulty": "easy",
+    "level": 1,
+    "correctResponse": "Both of you are hopeless. 😭",
+    "wrongResponse": "Really? Think again. 👀"
+  },
+  {
+    "id": "Q003",
+    "question": "Who is more likely to send the first good-morning text?",
+    "type": "choice",
+    "options": [
+      "Dudee",
+      "Biscoff",
+      "Discuss",
+      "Whoever wakes up first"
+    ],
+    "answer": "Discuss",
+    "category": "Us",
+    "difficulty": "easy",
+    "level": 1,
+    "correctResponse": "Correct. You know us well. ❤️",
+    "wrongResponse": "Hmm, not quite. Think again. 👀"
+  },
+  {
+    "id": "Q004",
+    "question": "What's my ideal kind of date?",
+    "type": "choice",
+    "options": [
+      "Cozy dinner",
+      "Movie night",
+      "Long drive/date outside",
+      "Stay home together"
+    ],
+    "answer": "Stay home together",
+    "category": "Favorites",
+    "difficulty": "easy",
+    "level": 1,
+    "correctResponse": "You know exactly what I like. 🥺❤️",
+    "wrongResponse": "Wrong date, Sweetu. Think harder. 👀"
+  },
+  {
+    "id": "Q005",
+    "question": "Who is more likely to overthink a tiny conversation for hours?",
+    "type": "choice",
+    "options": [
+      "Dudee",
+      "Biscoff",
+      "Both",
+      "Nobody, we're emotionally stable 😭"
+    ],
+    "answer": "Both",
+    "category": "Quirks",
+    "difficulty": "easy",
+    "level": 1,
+    "correctResponse": "Painfully accurate. 😭",
+    "wrongResponse": "Try again, this one's obvious. 👀"
+  },
+  {
+    "id": "Q006",
+    "question": "What would I most likely choose for a lazy evening together?",
+    "type": "choice",
+    "options": [
+      "Watching something",
+      "Ordering food",
+      "Talking for hours",
+      "Going somewhere spontaneously"
+    ],
+    "answer": "Talking for hours",
+    "category": "Everyday",
+    "difficulty": "easy",
+    "level": 1,
+    "correctResponse": "Yep. Hours of talking, obviously. ❤️",
+    "wrongResponse": "Nope. You should know this one. 😭"
+  },
+  {
+    "id": "Q007",
+    "question": "Which of these would make me happiest as a surprise?",
+    "type": "choice",
+    "options": [
+      "My favorite food",
+      "A thoughtful note",
+      "A spontaneous date",
+      "A small gift"
+    ],
+    "answer": "A spontaneous date",
+    "category": "Favorites",
+    "difficulty": "easy",
+    "level": 1,
+    "correctResponse": "Correct. You know me. ✨",
+    "wrongResponse": "Nice try, Sweetu. 😌"
+  },
+  {
+    "id": "Q008",
+    "question": "Who is more likely to say “I'm not sleepy” and then fall asleep first?",
+    "type": "choice",
+    "options": [
+      "Dudee",
+      "Biscoff",
+      "Both",
+      "Neither"
+    ],
+    "answer": "Dudee",
+    "category": "Us",
+    "difficulty": "easy",
+    "level": 1,
+    "correctResponse": "Obviously Dudee. 😭",
+    "wrongResponse": "Absolutely not. 😂"
+  },
+  {
+    "id": "Q009",
+    "question": "Who is more likely to get excited over a tiny thing that nobody else would care about?",
+    "type": "choice",
+    "options": [
+      "Dudee",
+      "Biscoff",
+      "Both",
+      "Depends on the thing"
+    ],
+    "answer": "Depends on the thing",
+    "category": "Quirks",
+    "difficulty": "easy",
+    "level": 1,
+    "correctResponse": "Correct. It really does depend. 😌",
+    "wrongResponse": "Hmm... you sure? 👀"
+  },
+  {
+    "id": "Q010",
+    "question": "Who says “I miss you” first more often?",
+    "type": "choice",
+    "options": [
+      "Dudee",
+      "Biscoff",
+      "It's basically equal",
+      "Whoever gets emotional first"
+    ],
+    "answer": "Whoever gets emotional first",
+    "category": "Us",
+    "difficulty": "easy",
+    "level": 1,
+    "correctResponse": "And somehow that always happens. 😭❤️",
+    "wrongResponse": "Not quite, Sweetu. 👀"
+  },
+  {
+    "id": "Q011",
+    "question": "When I'm upset, what do I usually want most?",
+    "type": "choice",
+    "options": [
+      "Space",
+      "Comfort and reassurance",
+      "A distraction",
+      "Food and silence"
+    ],
+    "answer": "Comfort and reassurance",
+    "category": "Personality",
+    "difficulty": "medium",
+    "level": 2,
+    "correctResponse": "Yesss, you actually know me. 🥺",
+    "wrongResponse": "Nope. This one's important. 😤"
+  },
+  {
+    "id": "Q012",
+    "question": "What is my biggest pet peeve?",
+    "type": "choice",
+    "options": [
+      "Being ignored",
+      "Being kept waiting",
+      "Being misunderstood",
+      "Something completely different"
+    ],
+    "answer": "Being misunderstood",
+    "category": "Quirks",
+    "difficulty": "medium",
+    "level": 2,
+    "correctResponse": "Exactly. You know me too well. 😭❤️",
+    "wrongResponse": "Interesting answer... but nope. 👀"
+  },
+  {
+    "id": "Q013",
+    "question": "What's the fastest way to make me laugh when I'm annoyed?",
+    "type": "choice",
+    "options": [
+      "Goody-goody",
+      "Making cute faces",
+      "Making me laugh with silly jokes",
+      "All of the above"
+    ],
+    "answer": "All of the above",
+    "category": "Personality",
+    "difficulty": "medium",
+    "level": 2,
+    "correctResponse": "You know all the tricks. 😂❤️",
+    "wrongResponse": "Clearly you need to pay more attention. 😭"
+  },
+  {
+    "id": "Q014",
+    "question": "What am I most likely to procrastinate?",
+    "type": "choice",
+    "options": [
+      "Studying",
+      "Cleaning",
+      "Replying to messages",
+      "Literally everything 😭"
+    ],
+    "answer": "Studying",
+    "category": "Everyday",
+    "difficulty": "medium",
+    "level": 2,
+    "correctResponse": "Caught me. 😭",
+    "wrongResponse": "Nope. Try again. 👀"
+  },
+  {
+    "id": "Q015",
+    "question": "What kind of gift would mean the most to me?",
+    "type": "choice",
+    "options": [
+      "Something expensive",
+      "Something useful",
+      "Something personalized",
+      "Something completely unexpected"
+    ],
+    "answer": "Something completely unexpected",
+    "category": "Preferences",
+    "difficulty": "medium",
+    "level": 2,
+    "correctResponse": "You get me. 🥺✨",
+    "wrongResponse": "It's the thought that surprises me. Try again. 😭"
+  },
+  {
+    "id": "Q016",
+    "question": "What's something I'm secretly very particular about?",
+    "type": "choice",
+    "options": [
+      "Food",
+      "My appearance",
+      "Plans and timing",
+      "How things are organized"
+    ],
+    "answer": "How things are organized",
+    "category": "Personality",
+    "difficulty": "medium",
+    "level": 2,
+    "correctResponse": "Yep. Everything has its place. 😌",
+    "wrongResponse": "Nope. Observe me more carefully. 👀"
+  },
+  {
+    "id": "Q017",
+    "question": "After an argument, who is more likely to make the first move toward fixing things?",
+    "type": "choice",
+    "options": [
+      "Dudee",
+      "Biscoff",
+      "Both eventually",
+      "Whoever realizes they were wrong first"
+    ],
+    "answer": "Both eventually",
+    "category": "Us",
+    "difficulty": "medium",
+    "level": 2,
+    "correctResponse": "Eventually, we always find our way back. ❤️",
+    "wrongResponse": "Hmm... not quite. 👀"
+  },
+  {
+    "id": "Q018",
+    "question": "What am I most likely to do when I'm embarrassed?",
+    "type": "choice",
+    "options": [
+      "Laugh it off and change the topic",
+      "Go completely silent",
+      "Pretend it never happened",
+      "Start explaining everything"
+    ],
+    "answer": "Laugh it off and change the topic",
+    "category": "Quirks",
+    "difficulty": "medium",
+    "level": 2,
+    "correctResponse": "Exactly. 😂",
+    "wrongResponse": "You should know this by now. 😭"
+  },
+  {
+    "id": "Q019",
+    "question": "What is something I could talk about for way too long?",
+    "type": "choice",
+    "options": [
+      "My interests",
+      "Gossip/drama",
+      "Random theories",
+      "You, of course 😌"
+    ],
+    "answer": "You, of course 😌",
+    "category": "Personality",
+    "difficulty": "medium",
+    "level": 2,
+    "correctResponse": "As you should. ❤️",
+    "wrongResponse": "Wow... I'm offended. 😭"
+  },
+  {
+    "id": "Q020",
+    "question": "What kind of affection do I appreciate the most?",
+    "type": "choice",
+    "options": [
+      "Words",
+      "Physical affection",
+      "Quality time",
+      "Little thoughtful actions"
+    ],
+    "answer": "Little thoughtful actions",
+    "category": "Us",
+    "difficulty": "medium",
+    "level": 2,
+    "correctResponse": "It's always the little things. 🥺❤️",
+    "wrongResponse": "Think about what actually makes me smile. 👀"
+  },
+  {
+    "id": "Q021",
+    "question": "When did we first meet properly?",
+    "type": "choice",
+    "options": [
+      "June",
+      "July",
+      "August",
+      "May"
+    ],
+    "answer": "July",
+    "category": "Firsts",
+    "difficulty": "medium",
+    "level": 3,
+    "correctResponse": "You remembered. ❤️",
+    "wrongResponse": "Nope. Wrong month, Sweetu. 👀"
+  },
+  {
+    "id": "Q022",
+    "question": "What was the first thing we properly talked about?",
+    "type": "choice",
+    "options": [
+      "Notes",
+      "A joke",
+      "A flirt or a group discussion",
+      "Exam question answers"
+    ],
+    "answer": "Notes",
+    "category": "Firsts",
+    "difficulty": "medium",
+    "level": 3,
+    "correctResponse": "That's it. You remembered. ✨",
+    "wrongResponse": "Not even close. Think harder. 😭"
+  },
+  {
+    "id": "Q023",
+    "question": "Who made the first move?",
+    "type": "choice",
+    "options": [
+      "Dudee",
+      "Biscoff",
+      "We both did",
+      "It just naturally happened"
+    ],
+    "answer": "Biscoff",
+    "category": "Firsts",
+    "difficulty": "medium",
+    "level": 3,
+    "correctResponse": "You know the lore. 😌❤️",
+    "wrongResponse": "Absolutely not. Rewind the timeline. 😂"
+  },
+  {
+    "id": "Q024",
+    "question": "What was the first thing we ever did together?",
+    "type": "choice",
+    "options": [
+      "Went somewhere",
+      "Ate together",
+      "Talked for hours",
+      "Took a photo together"
+    ],
+    "answer": "Talked for hours",
+    "category": "Firsts",
+    "difficulty": "medium",
+    "level": 3,
+    "correctResponse": "Of course we did. 😂❤️",
+    "wrongResponse": "Nope. Remember the beginning. 👀"
+  },
+  {
+    "id": "Q025",
+    "question": "What was our first proper date?",
+    "type": "choice",
+    "options": [
+      "Pizza World without pizza",
+      "Lunch outing",
+      "Dessert in café",
+      "All of the above"
+    ],
+    "answer": "All of the above",
+    "category": "Firsts",
+    "difficulty": "hard",
+    "level": 3,
+    "correctResponse": "You remembered the whole chaos. 😭❤️",
+    "wrongResponse": "You forgot part of the story. 👀"
+  },
+  {
+    "id": "Q026",
+    "question": "What was the first gift one of us gave the other?",
+    "type": "choice",
+    "options": [
+      "Food",
+      "Something handwritten",
+      "A small personal gift",
+      "Something memorable from a trip/place"
+    ],
+    "answer": "Something handwritten",
+    "category": "Memories",
+    "difficulty": "hard",
+    "level": 3,
+    "correctResponse": "That's the one. ♡",
+    "wrongResponse": "Nope. Think about the very beginning. 👀"
+  },
+  {
+    "id": "Q027",
+    "question": "What was the first inside joke we had?",
+    "type": "choice",
+    "options": [
+      "Something about our first meeting",
+      "A silly nickname",
+      "A random incident",
+      "Something only we would understand"
+    ],
+    "answer": "A silly nickname",
+    "category": "Firsts",
+    "difficulty": "hard",
+    "level": 3,
+    "correctResponse": "That's our kind of lore. 😂❤️",
+    "wrongResponse": "You're missing the obvious one. 😭"
+  },
+  {
+    "id": "Q028",
+    "question": "Who said “I love you” first?",
+    "type": "choice",
+    "options": [
+      "Dudee",
+      "Biscoff",
+      "Both at almost the same time",
+      "Nobody remembers anymore 😂"
+    ],
+    "answer": "Biscoff",
+    "category": "Firsts",
+    "difficulty": "hard",
+    "level": 3,
+    "correctResponse": "You remembered. ❤️",
+    "wrongResponse": "Excuse me?? Think again. 😤"
+  },
+  {
+    "id": "Q029",
+    "question": "What was one of the first things we watched together?",
+    "type": "choice",
+    "options": [
+      "A movie",
+      "A series",
+      "Reels",
+      "Something completely random"
+    ],
+    "answer": "Reels",
+    "category": "Memories",
+    "difficulty": "hard",
+    "level": 3,
+    "correctResponse": "Of course it was reels. 😂",
+    "wrongResponse": "How did you miss that? 😭"
+  },
+  {
+    "id": "Q030",
+    "question": "Which date/event is especially important to us?",
+    "type": "choice",
+    "options": [
+      "Our first meeting",
+      "Our first date",
+      "The day we got together",
+      "The Aakash's Lift!!"
+    ],
+    "answer": "The Aakash's Lift!!",
+    "category": "Us",
+    "difficulty": "hard",
+    "level": 3,
+    "correctResponse": "THE AAKASH'S LIFT!! 😭❤️",
+    "wrongResponse": "Nooo. You definitely know this one. 👀"
+  },
+  {
+    "id": "Q031",
+    "question": "What was I wearing on our first date?",
+    "type": "choice",
+    "options": [
+      "Green T-shirt",
+      "You actually have no idea 😭",
+      "Purple T-shirt",
+      "Blue T-shirt"
+    ],
+    "answer": "Green T-shirt",
+    "category": "Deep Memories",
+    "difficulty": "hard",
+    "level": 4,
+    "correctResponse": "You actually remembered. 😭❤️",
+    "wrongResponse": "HOW do you not know this?! 👀"
+  },
+  {
+    "id": "Q032",
+    "question": "What was the first thing about me that caught your attention?",
+    "type": "choice",
+    "options": [
+      "My personality",
+      "My posture",
+      "My veins",
+      "My golden hairs 😭"
+    ],
+    "answer": "My golden hairs 😭",
+    "category": "Deep Memories",
+    "difficulty": "hard",
+    "level": 4,
+    "correctResponse": "Of course you noticed those. 😂❤️",
+    "wrongResponse": "Nope. Look at the answer again. 😭"
+  },
+  {
+    "id": "Q033",
+    "question": "What was the first thing we ever argued about?",
+    "type": "choice",
+    "options": [
+      "Something silly",
+      "A misunderstanding (I forgot to come online because of cricket matches)",
+      "Jealousy",
+      "Something neither of us remembers properly"
+    ],
+    "answer": "A misunderstanding (I forgot to come online because of cricket matches)",
+    "category": "Deep Memories",
+    "difficulty": "hard",
+    "level": 4,
+    "correctResponse": "Yep. That cricket match. 😭",
+    "wrongResponse": "Think back to that incident. 👀"
+  },
+  {
+    "id": "Q034",
+    "question": "What was the first embarrassing moment we experienced together?",
+    "type": "choice",
+    "options": [
+      "One of us said something stupid",
+      "We were almost about to get caught doing something",
+      "Coming out of parking and all started clapping and hooting",
+      "It's too embarrassing to mention 😭"
+    ],
+    "answer": "We were almost about to get caught doing something",
+    "category": "Memories",
+    "difficulty": "hard",
+    "level": 4,
+    "correctResponse": "Oh GOD, that one. 😭",
+    "wrongResponse": "Nope. You know exactly which moment. 👀"
+  },
+  {
+    "id": "Q035",
+    "question": "What was one of the first things I told you that made you realize I trusted you?",
+    "type": "choice",
+    "options": [
+      "A personal story",
+      "A secret",
+      "A fear/insecurity",
+      "All of the above"
+    ],
+    "answer": "All of the above",
+    "category": "Deep Memories",
+    "difficulty": "hard",
+    "level": 4,
+    "correctResponse": "You remembered everything. 🥺❤️",
+    "wrongResponse": "Nope. There was more to it. 👀"
+  },
+  {
+    "id": "Q036",
+    "question": "Which moment first made you think, “Okay, this person is really important to me”?",
+    "type": "choice",
+    "options": [
+      "A difficult conversation",
+      "A sweet moment",
+      "A memorable date",
+      "Coffeedo and Stomach ache"
+    ],
+    "answer": "Coffeedo and Stomach ache",
+    "category": "Deep Memories",
+    "difficulty": "hard",
+    "level": 4,
+    "correctResponse": "That one. You know exactly why. ❤️",
+    "wrongResponse": "Nooo. Think about Coffeedo. 👀"
+  },
+  {
+    "id": "Q037",
+    "question": "Which of these is most likely to trigger one of our inside jokes instantly?",
+    "type": "choice",
+    "options": [
+      "A specific word",
+      "A place",
+      "A person's name",
+      "Paani (water) 💧😂"
+    ],
+    "answer": "Paani (water) 💧😂",
+    "category": "Inside Jokes",
+    "difficulty": "hard",
+    "level": 4,
+    "correctResponse": "PAANI. 😂💧❤️",
+    "wrongResponse": "You should know this one. 😭"
+  },
+  {
+    "id": "Q038",
+    "question": "What is the most ridiculous thing we have ever had a serious argument about?",
+    "type": "choice",
+    "options": [
+      "Food",
+      "Plans",
+      "Something happened in a dream 😂",
+      "No"
+    ],
+    "answer": "Something happened in a dream 😂",
+    "category": "Memories",
+    "difficulty": "hard",
+    "level": 4,
+    "correctResponse": "THE DREAM. 😭😂",
+    "wrongResponse": "No way you forgot that. 👀"
+  },
+  {
+    "id": "Q039",
+    "question": "Which shared memory do I talk about the most?",
+    "type": "choice",
+    "options": [
+      "Our first days",
+      "A trip/date",
+      "A funny incident",
+      "Every possible good interaction we had till now (I just can't stop talking about us)"
+    ],
+    "answer": "Every possible good interaction we had till now (I just can't stop talking about us)",
+    "category": "Deep Memories",
+    "difficulty": "hard",
+    "level": 4,
+    "correctResponse": "Obviously. I can talk about us forever. ❤️",
+    "wrongResponse": "You clearly haven't been listening to me. 😭"
+  },
+  {
+    "id": "Q040",
+    "question": "What is something about our early relationship that most people probably don't know?",
+    "type": "choice",
+    "options": [
+      "How we first met",
+      "How I solved the early misunderstanding, (with a little kiss😂)",
+      "A secret nickname",
+      "U judged me for someone else😔🤚🏻"
+    ],
+    "answer": "U judged me for someone else😔🤚🏻",
+    "category": "Us",
+    "difficulty": "hard",
+    "level": 4,
+    "correctResponse": "Yep. THAT one. 😭❤️",
+    "wrongResponse": "Nooo. You know the real lore. 👀"
+  },
+  {
+    "id": "Q041",
+    "question": "What was the first exact moment you realized you didn't want to lose me?",
+    "type": "choice",
+    "options": [
+      "The Coffeedo café, when u got ill.",
+      "When I got injured.",
+      "When we constantly kept choosing each other.",
+      "When we got caught by your parents."
+    ],
+    "answer": "When we constantly kept choosing each other.",
+    "category": "Deepest Memories",
+    "difficulty": "very hard",
+    "level": 5,
+    "correctResponse": "That's the one. ❤️🧿",
+    "wrongResponse": "Think about everything we've been through. 👀"
+  },
+  {
+    "id": "Q042",
+    "question": "What is one tiny thing I do that you notice even though I probably don't realize it?",
+    "type": "choice",
+    "options": [
+      "Shaking my one leg randomly",
+      "Setting my hair again and again",
+      "Teasing you a lot",
+      "Even you are confused 😭"
+    ],
+    "answer": "Even you are confused 😭",
+    "category": "Deepest Memories",
+    "difficulty": "very hard",
+    "level": 5,
+    "correctResponse": "HAHA yes, even you are confused. 😭❤️",
+    "wrongResponse": "Nope. You missed the tiny detail. 👀"
+  },
+  {
+    "id": "Q043",
+    "question": "When do you feel the safest?",
+    "type": "choice",
+    "options": [
+      "In my arms ❤️🧿",
+      "Around me 😋",
+      "When we are on a date ✨",
+      "When we are traveling in our car 😼"
+    ],
+    "answer": "In my arms ❤️🧿",
+    "category": "Intimate",
+    "difficulty": "very hard",
+    "level": 5,
+    "correctResponse": "That's exactly where you should feel safest. ❤️🧿",
+    "wrongResponse": "Hmm... think about it again, Sweetu. 👀"
+  },
+  {
+    "id": "Q044",
+    "question": "What is one moment with me that you think I probably don't realize was important to you?",
+    "type": "choice",
+    "options": [
+      "The Coffeedo",
+      "Long peaceful hugs near park",
+      "Late night walks near park",
+      "All of the above"
+    ],
+    "answer": "All of the above",
+    "category": "Emotional",
+    "difficulty": "very hard",
+    "level": 5,
+    "correctResponse": "All of them. Obviously. ❤️",
+    "wrongResponse": "You really forgot the good parts? 😭"
+  },
+  {
+    "id": "Q045",
+    "question": "What is the most “us” thing we've ever done?",
+    "type": "choice",
+    "options": [
+      "Shared everything happens in our lives to each other on a daily basis.",
+      "Calling \"Dudee\" to each other.",
+      "Being clingy a lot to each other.",
+      "All of the above, what to say😭❤️"
+    ],
+    "answer": "All of the above, what to say😭❤️",
+    "category": "Us Lore",
+    "difficulty": "very hard",
+    "level": 5,
+    "correctResponse": "Exactly. All of us. 😭❤️",
+    "wrongResponse": "There is literally only one correct answer. 👀"
+  },
+  {
+    "id": "Q046",
+    "question": "What do you think I'm really bad at?",
+    "type": "choice",
+    "options": [
+      "Remembering dates",
+      "Giving good gifts 😂",
+      "Making you angry sometimes",
+      "Nah, you are the best ❤️"
+    ],
+    "answer": "Nah, you are the best ❤️",
+    "category": "Emotional",
+    "difficulty": "very hard",
+    "level": 5,
+    "correctResponse": "Awww. That's the answer I wanted. 🥺❤️",
+    "wrongResponse": "Excuse me?? 😭"
+  },
+  {
+    "id": "Q047",
+    "question": "What do you think is something I need to hear from you more often?",
+    "type": "choice",
+    "options": [
+      "“I'm proud of you”⭐",
+      "“I'm here for you” ❤️",
+      "“I love you” ❤️",
+      "Anything in your voice, its just peace ❤️"
+    ],
+    "answer": "Anything in your voice, its just peace ❤️",
+    "category": "Emotional",
+    "difficulty": "very hard",
+    "level": 5,
+    "correctResponse": "That's all I need. ❤️",
+    "wrongResponse": "Listen to your heart and try again. 👀"
+  },
+  {
+    "id": "Q048",
+    "question": "Which memory would embarrass me the most?",
+    "type": "choice",
+    "options": [
+      "bike-pani and wet pants 😔🤚🏻",
+      "Manali washroom Paani moment😂",
+      "First date Pizza World moment.😼",
+      "Something else."
+    ],
+    "answer": "Manali washroom Paani moment😂",
+    "category": "Deepest Memories",
+    "difficulty": "very hard",
+    "level": 5,
+    "correctResponse": "I am embarrased for this till date😭",
+    "wrongResponse": "Please don't tell me you forgot THIS. 😂"
+  },
+  {
+    "id": "Q049",
+    "question": "If you could relive exactly one moment we've had together, which would I guess you'd choose?",
+    "type": "choice",
+    "options": [
+      "Our first meeting",
+      "Our Manali Trip ❤️",
+      "The 12-hours date we used to have in our 2nd year",
+      "I bought bouquet for u wearing tuxedo for the first time in college."
+    ],
+    "answer": "Our Manali Trip ❤️",
+    "category": "Deepest Memories",
+    "difficulty": "very hard",
+    "level": 5,
+    "correctResponse": "That's the one. ❤️",
+    "wrongResponse": "Think about the memory I'd choose. 👀"
+  },
+  {
+    "id": "Q050",
+    "question": "What is the one thing about “us” that I think you know for absolutely sure?",
+    "type": "choice",
+    "options": [
+      "Our love is real.",
+      "How well we understand each other.",
+      "That we'll always find our way back to each other.",
+      "The ID and password for this website😂"
+    ],
+    "answer": "The ID and password for this website😂",
+    "category": "Final Boss",
+    "difficulty": "very hard",
+    "level": 5,
+    "correctResponse": "HOW DO YOU EVEN KNOW THAT?! 😂❤️",
+    "wrongResponse": "Nope. You should definitely know this one. 😭"
+  }
+]

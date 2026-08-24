@@ -1,0 +1,184 @@
+[
+  {
+    "id": "trips",
+    "label": "Trips",
+    "emoji": "✈️",
+    "subtitle": "Every place we ran off to",
+    "driveUrl": "https://drive.google.com/drive/folders/1rVofim-9rF0sYdEwaK4HuDNn4szueIDP?usp=sharing",
+    "events": [
+      {
+        "label": "College Trip",
+        "year": 2024,
+        "driveUrl": "https://drive.google.com/drive/folders/1uik9fwNixL7jzvJAof1ettN1IQNFMi1d?usp=drive_link"
+      }
+    ]
+  },
+  {
+    "id": "birthdays",
+    "label": "Birthdays",
+    "emoji": "🎂",
+    "subtitle": "Cake, candles, chaos",
+    "driveUrl": "https://drive.google.com/drive/folders/1pYPSKtMSw76dOUCXF9uztDTdj7bXiGQd?usp=drive_link",
+    "events": [
+      {
+        "label": "Neha's bday",
+        "driveUrl": "https://drive.google.com/drive/folders/1ZFgeX4eXgAqmW8tqepn5WW320PXDlpl4?usp=drive_link",
+        "events": [
+          {
+            "label": "Finally Legal Now",
+            "year": 2023,
+            "driveUrl": "https://drive.google.com/drive/folders/1gz43jKmG5M17cvUEdoMO4GkZFb6KhfEQ?usp=drive_link"
+          },
+          {
+            "label": "19 ke ho gye!",
+            "year": 2024,
+            "driveUrl": "https://drive.google.com/drive/folders/18dzWvlJdMlEm08zcj4QvFKHE7uZbyQuD?usp=drive_link"
+          },
+          {
+            "label": "20 ke ho gye!",
+            "year": 2025,
+            "driveUrl": "https://drive.google.com/drive/folders/1k2guszkiinnj7VbrFsXY6ERq2rHerp0U?usp=drive_link"
+          }
+        ]
+      },
+      {
+        "label": "Tanesh's B'day",
+        "driveUrl": "https://drive.google.com/drive/folders/1xkBbnZOYvnrCCxwhKYqxJFIvv4zTV0IS?usp=drive_link",
+        "events": [
+          {
+            "label": "19th Bday bash!",
+            "year": 2024,
+            "driveUrl": "https://drive.google.com/drive/folders/1tsZggWN6CLbx8RMPVcIlH-gSP_gv0x6-?usp=drive_link"
+          },
+          {
+            "label": "20 ka ho gya!",
+            "year": 2025,
+            "driveUrl": "https://drive.google.com/drive/folders/1QQMJHtV5SOXapMGHj5KYzi5eC8mR79fP?usp=drive_link"
+          },
+          {
+            "label": "21 ka ho gya!",
+            "year": 2026,
+            "driveUrl": "https://drive.google.com/drive/folders/1AIVkLFG6NWKpRlem5tVNRDbrCFkfjsqW?usp=drive_link"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "college",
+    "label": "College",
+    "emoji": "🎓",
+    "subtitle": "All the chaos we made here",
+    "driveUrl": "https://drive.google.com/drive/folders/1CNC4PLTa0npfWpkVzvBUHXDZdfywYhEb?usp=drive_link",
+    "events": [
+      {
+        "label": "Freshers",
+        "year": 2023,
+        "driveUrl": "https://drive.google.com/drive/folders/1bowesznnoLZFIMcJO-ik3WxCkGLIi_h7?usp=drive_link"
+      },
+      {
+        "label": "Rythm",
+        "year": 2024,
+        "driveUrl": "https://drive.google.com/drive/folders/1psdLyQTB6t4GT-I_WqH61Mr4xtCuA2U7?usp=drive_link"
+      },
+      {
+        "label": "Rythm",
+        "year": 2025,
+        "driveUrl": "https://drive.google.com/drive/folders/1Ecxhw-xtdj7YVYGcQE2XQztqyP_Say4i?usp=drive_link"
+      },
+      {
+        "label": "Rythm",
+        "year": 2026,
+        "driveUrl": "https://drive.google.com/drive/folders/1bq6LVh7iXchc6ZEKjB2oOSJsPOxUR4oj?usp=drive_link"
+      }
+    ]
+  },
+  {
+    "id": "dates",
+    "label": "Dates",
+    "emoji": "❤️",
+    "subtitle": "The days that became memories",
+    "driveUrl": "https://drive.google.com/drive/folders/1b8QbaI0VtrS5k31IuGZGO1oKM0rNSF72?usp=drive_link",
+    "events": [
+      {
+        "label": "2nd year anni",
+        "year": 2024,
+        "driveUrl": "https://drive.google.com/drive/folders/1yHeEKeoFNFdcKrpXPUNJpoQ83AAhOk-U?usp=drive_link"
+      },
+      {
+        "label": "Book Fest",
+        "year": 2023,
+        "driveUrl": "https://drive.google.com/drive/folders/1aBcAJg1-CPQNWUuGNzIf33az5neoVp2c?usp=drive_link"
+      },
+      {
+        "label": "Christmas",
+        "year": 2024,
+        "driveUrl": "https://drive.google.com/drive/folders/1F2GRUvPGR8vN3TX482SsF4uaPG6gNPxQ?usp=drive_link"
+      },
+      {
+        "label": "Christmas - Dec",
+        "year": 2025,
+        "driveUrl": "https://drive.google.com/drive/folders/11SyQlpRQNTcZaFb7eMV-Z89pPhPs1olm?usp=drive_link"
+      },
+      {
+        "label": "In the memories of shades!",
+        "year": 2025,
+        "driveUrl": "https://drive.google.com/drive/folders/1fRA2Vk2eced4nc_LfoRe47NFiQ2Jl4yX?usp=drive_link"
+      },
+      {
+        "label": "Magnolia",
+        "year": 2024,
+        "driveUrl": "https://drive.google.com/drive/folders/1RG01orrUUadGaSrdVO08x80Yc9ipbsdK?usp=drive_link"
+      },
+      {
+        "label": "Rose Day",
+        "year": 2024,
+        "driveUrl": "https://drive.google.com/drive/folders/1GmD5tcgfZT_eU-B6tDYwm0i5qyJFAErU?usp=drive_link"
+      },
+      {
+        "label": "Sarah's Bday",
+        "year": 2024,
+        "driveUrl": "https://drive.google.com/drive/folders/1U8-xJMoaq7N7H9z0iZONMvP3I5iwQfP8?usp=drive_link"
+      }
+    ]
+  },
+  {
+    "id": "random-specials",
+    "label": "Random Special's",
+    "emoji": "✨",
+    "subtitle": "The random moments that somehow mattered",
+    "driveUrl": "https://drive.google.com/drive/folders/1KUR_SQl_4GyDDW1GWUQkv66IhfCkovTq?usp=drive_link",
+    "events": [
+      {
+        "label": "Fun Kingdom",
+        "year": 2025,
+        "driveUrl": "https://drive.google.com/drive/folders/1WgJyPqdLF8l0n7qGtxVBs9-qS35GHiFS?usp=drive_link"
+      },
+      {
+        "label": "Garba",
+        "year": 2025,
+        "driveUrl": "https://drive.google.com/drive/folders/18a1wcHV-OVQg8DPePaVxjity4e82uY4e?usp=drive_link"
+      },
+      {
+        "label": "Garh Ganesh",
+        "year": 2023,
+        "driveUrl": "https://drive.google.com/drive/folders/1irZBcb_FkKyUBgPqOVD3dGn0MBPdY7o2?usp=drive_link"
+      },
+      {
+        "label": "Kaizen",
+        "year": 2025,
+        "driveUrl": "https://drive.google.com/drive/folders/1rLwmlpUylWFUx5TJWwzExCevOTkp7DhN?usp=drive_link"
+      },
+      {
+        "label": "Morning Jaipur",
+        "year": 2026,
+        "driveUrl": "https://drive.google.com/drive/folders/1X8qqzQWfbNawFPAly2QbOWPhe4uB65XB?usp=drive_link"
+      },
+      {
+        "label": "Real Random",
+        "year": 2026,
+        "driveUrl": "https://drive.google.com/drive/folders/1SbT7LQio15NJM-ozMcRW1uKJJafbdE40?usp=drive_link"
+      }
+    ]
+  }
+]
