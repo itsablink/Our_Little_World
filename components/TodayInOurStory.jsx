@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { getEntries } from "@/lib/diaryStore";
-import { getMemories } from "@/lib/messageStore";
+import { getMemories, fetchMemoriesFromApi } from "@/lib/messageStore";
 import { getAllLeafEvents } from "@/lib/photoIndex";
 
 function formatDate(dateStr) {
@@ -13,65 +13,66 @@ function formatDate(dateStr) {
   return d.toLocaleDateString(undefined, { day: "numeric", month: "long", year: "numeric" });
 }
 
-// Builds a random pool from every memory source currently in the app —
-// photos/events (from data/events.json), diary entries, letters, and saved
-// message memories — and picks ONE at random. Nothing is weighted toward
-// any single type, and nothing is invented if a source is empty. As new
-// content is added to any source, it automatically becomes eligible here
-// without this component needing to change.
 export default function TodayInOurStory({ events, diarySeed, letters }) {
   const [feature, setFeature] = useState(null);
 
   useEffect(() => {
-    const pool = [];
+    async function loadPool() {
+      const pool = [];
 
-    getAllLeafEvents(events).forEach((leaf) => {
-      pool.push({
-        kind: "photo",
-        emoji: leaf.categoryEmoji || "📸",
-        title: `${leaf.label} (${leaf.year})`,
-        subtitle: `${leaf.categoryLabel} memories`,
-        href: leaf.driveUrl,
-        external: true
+      getAllLeafEvents(events).forEach((leaf) => {
+        pool.push({
+          kind: "photo",
+          emoji: leaf.categoryEmoji || "📸",
+          title: `${leaf.label} (${leaf.year})`,
+          subtitle: `${leaf.categoryLabel} memories`,
+          href: leaf.driveUrl,
+          external: true
+        });
       });
-    });
 
-    getEntries(diarySeed).forEach((entry) => {
-      pool.push({
-        kind: "diary",
-        emoji: "📖",
-        title: "A diary entry",
-        subtitle: `${entry.heading} — ${formatDate(entry.date)}`,
-        href: "/diary",
-        external: false
+      getEntries(diarySeed).forEach((entry) => {
+        pool.push({
+          kind: "diary",
+          emoji: "📖",
+          title: "A diary entry",
+          subtitle: `${entry.heading} — ${formatDate(entry.date)}`,
+          href: "/diary",
+          external: false
+        });
       });
-    });
 
-    (letters || []).forEach((letter) => {
-      pool.push({
-        kind: "letter",
-        emoji: "💌",
-        title: letter.title || "A handwritten letter",
-        subtitle: letter.description || "A memory in words",
-        href: "/letters",
-        external: false
+      (letters || []).forEach((letter) => {
+        pool.push({
+          kind: "letter",
+          emoji: "💌",
+          title: letter.title || "A handwritten letter",
+          subtitle: letter.description || "A memory in words",
+          href: "/letters",
+          external: false
+        });
       });
-    });
 
-    getMemories([]).forEach((memory) => {
-      pool.push({
-        kind: "message",
-        emoji: "💬",
-        title: "A special message",
-        subtitle: memory.title || "Something worth keeping",
-        href: "/letters?tab=messages",
-        external: false
+      const messageMemories = await fetchMemoriesFromApi();
+      const activeMemories = messageMemories && messageMemories.length > 0 ? messageMemories : getMemories([]);
+
+      activeMemories.forEach((memory) => {
+        pool.push({
+          kind: "message",
+          emoji: "💬",
+          title: memory.title || "A special message",
+          subtitle: memory.author ? `Message from ${memory.author}` : "A preserved memory in words",
+          href: "/letters?tab=messages",
+          external: false
+        });
       });
-    });
 
-    if (pool.length > 0) {
-      setFeature(pool[Math.floor(Math.random() * pool.length)]);
+      if (pool.length > 0) {
+        setFeature(pool[Math.floor(Math.random() * pool.length)]);
+      }
     }
+
+    loadPool();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

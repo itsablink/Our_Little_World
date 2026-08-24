@@ -3,46 +3,34 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import GlassButton from "./GlassButton";
-import { fileToDataUrl, uploadScreenshotApi } from "@/lib/messageStore";
 
-export default function MessageUpload({ onSave, onCancel }) {
-  const [title, setTitle] = useState("");
-  const [date, setDate] = useState("");
-  const [author, setAuthor] = useState("");
-  const [screenshots, setScreenshots] = useState([]);
-  const [error, setError] = useState("");
-  const [busy, setBusy] = useState(false);
+export default function MessageUpload({ initialMemory, onSave, onCancel }) {
+  const isEdit = Boolean(initialMemory);
+  const [title, setTitle] = useState(initialMemory?.title || "");
+  const [date, setDate] = useState(initialMemory?.date || "");
+  const [author, setAuthor] = useState(initialMemory?.author || "");
+  const [message, setMessage] = useState(initialMemory?.message || "");
+  const [note, setNote] = useState(initialMemory?.note || "");
+  const [errors, setErrors] = useState({});
 
-  async function handleFiles(e) {
-    const files = Array.from(e.target.files || []);
-    if (files.length === 0) return;
-    setBusy(true);
-    try {
-      const urls = await Promise.all(files.map((f) => uploadScreenshotApi(f)));
-      setScreenshots((prev) => [...prev, ...urls]);
-    } catch {
-      setError("Couldn't read one of those files — try again.");
-    } finally {
-      setBusy(false);
-    }
-  }
-
-  function removeShot(index) {
-    setScreenshots((prev) => prev.filter((_, i) => i !== index));
+  function validate() {
+    const next = {};
+    if (!title.trim()) next.title = "Give this memory a title.";
+    if (!message.trim()) next.message = "Paste or write the message content.";
+    setErrors(next);
+    return Object.keys(next).length === 0;
   }
 
   function handleSubmit(e) {
     e.preventDefault();
-    if (!title.trim()) {
-      setError("Give this memory a title.");
-      return;
-    }
-    if (screenshots.length === 0) {
-      setError("Add at least one screenshot.");
-      return;
-    }
-    setError("");
-    onSave({ title: title.trim(), date, author: author.trim(), screenshots });
+    if (!validate()) return;
+    onSave({
+      title: title.trim(),
+      date,
+      author: author.trim(),
+      message: message.trim(),
+      note: note.trim()
+    });
   }
 
   return (
@@ -52,7 +40,9 @@ export default function MessageUpload({ onSave, onCancel }) {
       animate={{ opacity: 1, y: 0 }}
       className="glass-strong rounded-[28px] shadow-glass px-7 py-8 w-full max-w-lg flex flex-col gap-4"
     >
-      <p className="font-display italic text-2xl text-wine text-center mb-2">Save a Memory</p>
+      <p className="font-display italic text-2xl text-wine text-center mb-2">
+        💬 {isEdit ? "Edit Special Memory" : "Add a Special Memory"}
+      </p>
 
       <div>
         <label className="text-xs uppercase tracking-widest text-rose font-semibold">Title *</label>
@@ -60,9 +50,10 @@ export default function MessageUpload({ onSave, onCancel }) {
           type="text"
           value={title}
           onChange={(e) => setTitle(e.target.value)}
-          placeholder="That birthday message"
+          placeholder="One of those messages"
           className="mt-1 w-full rounded-2xl bg-white/70 border border-white px-4 py-3 text-inkrose placeholder:text-inkrose/40 focus:bg-white/90 transition-colors"
         />
+        {errors.title && <p className="text-xs text-rose mt-1">{errors.title}</p>}
       </div>
 
       <div className="flex gap-3">
@@ -81,44 +72,37 @@ export default function MessageUpload({ onSave, onCancel }) {
             type="text"
             value={author}
             onChange={(e) => setAuthor(e.target.value)}
-            placeholder="Biscoff"
+            placeholder="Biscoff / Dudee"
             className="mt-1 w-full rounded-2xl bg-white/70 border border-white px-4 py-3 text-inkrose placeholder:text-inkrose/40 focus:bg-white/90 transition-colors"
           />
         </div>
       </div>
 
       <div>
-        <label className="text-xs uppercase tracking-widest text-rose font-semibold">Screenshot(s) *</label>
-        <input
-          type="file"
-          accept="image/*"
-          multiple
-          onChange={handleFiles}
-          className="mt-1 w-full text-sm text-inkrose file:mr-3 file:rounded-full file:border-0 file:bg-rose file:text-white file:px-4 file:py-2 file:text-xs file:font-semibold file:uppercase file:tracking-wide"
+        <label className="text-xs uppercase tracking-widest text-rose font-semibold">Message *</label>
+        <textarea
+          value={message}
+          onChange={(e) => setMessage(e.target.value)}
+          placeholder="Paste or write the heartfelt message here..."
+          rows={7}
+          className="mt-1 w-full rounded-2xl bg-white/70 border border-white px-4 py-3 text-inkrose placeholder:text-inkrose/40 focus:bg-white/90 transition-colors leading-relaxed whitespace-pre-wrap resize-none font-body"
         />
-        {busy && <p className="text-xs text-inkrose/50 mt-1">Reading files…</p>}
-        {screenshots.length > 0 && (
-          <div className="flex flex-wrap gap-2 mt-3">
-            {screenshots.map((src, i) => (
-              <div key={i} className="relative">
-                <img src={src} alt="" className="w-16 h-16 object-cover rounded-lg" />
-                <button
-                  type="button"
-                  onClick={() => removeShot(i)}
-                  className="absolute -top-1.5 -right-1.5 bg-wine text-white text-[10px] w-4 h-4 rounded-full flex items-center justify-center"
-                >
-                  ✕
-                </button>
-              </div>
-            ))}
-          </div>
-        )}
+        {errors.message && <p className="text-xs text-rose mt-1">{errors.message}</p>}
       </div>
 
-      {error && <p className="text-xs text-rose text-center">{error}</p>}
+      <div>
+        <label className="text-xs uppercase tracking-widest text-rose font-semibold">Note (optional)</label>
+        <textarea
+          value={note}
+          onChange={(e) => setNote(e.target.value)}
+          placeholder="One of those messages I'll always remember ❤️"
+          rows={2}
+          className="mt-1 w-full rounded-2xl bg-white/70 border border-white px-4 py-2.5 text-xs text-inkrose placeholder:text-inkrose/40 focus:bg-white/90 transition-colors leading-relaxed resize-none"
+        />
+      </div>
 
       <div className="flex gap-3 justify-center mt-2">
-        <GlassButton type="submit">Save Memory</GlassButton>
+        <GlassButton type="submit">{isEdit ? "Save changes ❤️" : "Save Memory ❤️"}</GlassButton>
         <GlassButton type="button" variant="ghost" onClick={onCancel}>Cancel</GlassButton>
       </div>
     </motion.form>

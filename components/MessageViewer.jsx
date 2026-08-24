@@ -1,74 +1,69 @@
 "use client";
 
-import { useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
-import { X, ChevronLeft, ChevronRight } from "lucide-react";
+import { motion } from "framer-motion";
+import GlassButton from "./GlassButton";
 
-export default function MessageViewer({ memory, onClose }) {
-  const [index, setIndex] = useState(0);
+function formatDate(dateStr) {
+  if (!dateStr) return "";
+  const d = new Date(dateStr);
+  if (Number.isNaN(d.getTime())) return dateStr;
+  return d.toLocaleDateString(undefined, { day: "numeric", month: "long", year: "numeric" });
+}
+
+export default function MessageViewer({ memory, onBack, onEdit, onDelete }) {
   if (!memory) return null;
 
-  const shots = memory.screenshots || [];
+  const dateFormatted = formatDate(memory.date);
+  const authorBadge = memory.author ? `— ${memory.author}` : "";
 
   return (
-    <AnimatePresence>
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        exit={{ opacity: 0 }}
-        className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 px-4 py-8"
-        onClick={onClose}
-      >
-        <motion.div
-          initial={{ opacity: 0, scale: 0.92, y: 16 }}
-          animate={{ opacity: 1, scale: 1, y: 0 }}
-          exit={{ opacity: 0, scale: 0.95 }}
-          onClick={(e) => e.stopPropagation()}
-          className="glass-strong rounded-3xl shadow-glass max-w-2xl w-full max-h-[85vh] flex flex-col overflow-hidden"
-        >
-          <div className="flex items-center justify-between px-5 py-4 border-b border-white/40">
-            <div>
-              <p className="font-display text-lg text-wine">{memory.title}</p>
-              <p className="text-xs text-inkrose/60">
-                {[memory.date, memory.author].filter(Boolean).join(" · ")}
-              </p>
-            </div>
-            <button onClick={onClose} className="text-inkrose/60 hover:text-inkrose p-1" aria-label="Close">
-              <X size={22} />
-            </button>
-          </div>
+    <motion.div
+      initial={{ opacity: 0, scale: 0.97 }}
+      animate={{ opacity: 1, scale: 1 }}
+      exit={{ opacity: 0, scale: 0.96 }}
+      transition={{ duration: 0.35 }}
+      className="glass-strong rounded-[28px] shadow-glass px-8 py-10 w-full max-w-lg text-center flex flex-col items-center"
+    >
+      <span className="text-3xl mb-2">💬</span>
+      
+      {dateFormatted || authorBadge ? (
+        <p className="text-xs uppercase tracking-widest text-rose font-semibold mb-2">
+          {[dateFormatted, authorBadge].filter(Boolean).join(" ")}
+        </p>
+      ) : null}
 
-          <div className="flex-1 overflow-auto flex items-center justify-center bg-white/30 p-4">
-            {shots[index] && (
-              <img
-                src={shots[index]}
-                alt={memory.title}
-                className="max-w-full max-h-[60vh] object-contain rounded-xl shadow-glass"
-              />
-            )}
-          </div>
+      <h2 className="font-display italic text-2xl text-wine mb-6">{memory.title}</h2>
+      
+      <div className="h-px bg-wine/15 w-full mb-6" />
 
-          {shots.length > 1 && (
-            <div className="flex justify-between items-center px-5 py-3 border-t border-white/40">
-              <button
-                onClick={() => setIndex((i) => Math.max(0, i - 1))}
-                disabled={index === 0}
-                className="flex items-center gap-1 text-xs uppercase tracking-widest text-rose font-semibold disabled:opacity-30"
-              >
-                <ChevronLeft size={16} /> Previous
-              </button>
-              <span className="text-xs text-inkrose/50">{index + 1} / {shots.length}</span>
-              <button
-                onClick={() => setIndex((i) => Math.min(shots.length - 1, i + 1))}
-                disabled={index === shots.length - 1}
-                className="flex items-center gap-1 text-xs uppercase tracking-widest text-rose font-semibold disabled:opacity-30"
-              >
-                Next <ChevronRight size={16} />
-              </button>
-            </div>
-          )}
-        </motion.div>
-      </motion.div>
-    </AnimatePresence>
+      <div className="w-full text-left font-body text-inkrose/85 leading-relaxed whitespace-pre-wrap bg-white/50 p-6 rounded-2xl border border-white/60 shadow-inner">
+        {memory.message}
+      </div>
+
+      {memory.note && (
+        <div className="w-full text-left mt-4 text-xs text-wine/80 italic bg-blush/30 p-3.5 rounded-xl border border-rose/10">
+          <span className="font-semibold not-italic text-rose">Note: </span>
+          {memory.note}
+        </div>
+      )}
+
+      <div className="h-px bg-wine/15 w-full mt-8 mb-6" />
+
+      <div className="flex flex-wrap gap-3 justify-center">
+        <GlassButton variant="ghost" onClick={onBack}>
+          ← Back to messages
+        </GlassButton>
+        {onEdit && (
+          <GlassButton variant="ghost" onClick={onEdit}>
+            Edit
+          </GlassButton>
+        )}
+        {onDelete && (
+          <GlassButton variant="ghost" onClick={onDelete}>
+            Delete
+          </GlassButton>
+        )}
+      </div>
+    </motion.div>
   );
 }

@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import LetterCard from "./LetterCard";
 import LetterViewer from "./LetterViewer";
 import MessageMemoryCard from "./MessageMemoryCard";
@@ -19,6 +19,8 @@ import {
   fetchMemoriesFromApi,
   addMemory,
   addMemoryApi,
+  updateMemory,
+  updateMemoryApi,
   deleteMemory,
   deleteMemoryApi,
   sortByDateDesc
@@ -30,15 +32,16 @@ export default function LettersSection({ letters, lettersFolderUrl }) {
   const [activeLetterIndex, setActiveLetterIndex] = useState(null);
 
   const [memories, setMemories] = useState([]);
-  const [memoryStage, setMemoryStage] = useState("list"); // list | upload
+  const [memoryStage, setMemoryStage] = useState("list"); // list | create | edit | view
   const [activeMemory, setActiveMemory] = useState(null);
   const [pendingDeleteId, setPendingDeleteId] = useState(null);
-  const [uploadError, setUploadError] = useState("");
+  const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
     async function load() {
       const initial = getMemories([]);
       setMemories(sortByDateDesc(initial));
+      setLoaded(true);
       const remote = await fetchMemoriesFromApi();
       if (remote && remote.length > 0) {
         setMemories(sortByDateDesc(remote));
@@ -53,22 +56,38 @@ export default function LettersSection({ letters, lettersFolderUrl }) {
     setActiveLetterIndex(letters.findIndex((l) => l.id === letter.id));
   }
 
-  async function handleSaveMemory(memory) {
-    const saved = await addMemoryApi(memory);
-    const { ok, memories: updated } = addMemory(memories, saved);
-    if (!ok) {
-      setUploadError("Couldn't save — your browser's storage is full. Try fewer or smaller screenshots.");
-      return;
+  async function handleSaveMemory(memoryData) {
+    if (memoryStage === "edit" && activeMemory) {
+      const updatedRecord = await updateMemoryApi(activeMemory.id, memoryData);
+      const updatedList = updateMemory(memories, activeMemory.id, memoryData);
+      setMemories(sortByDateDesc(updatedList));
+      setActiveMemory({ ...activeMemory, ...updatedRecord });
+      setMemoryStage("view");
+    } else {
+      const saved = await addMemoryApi(memoryData);
+      const { memories: updatedList } = addMemory(memories, saved);
+      setMemories(sortByDateDesc(updatedList));
+      setMemoryStage("list");
     }
-    setMemories(sortByDateDesc(updated));
-    setMemoryStage("list");
   }
 
   async function confirmDeleteMemory() {
-    await deleteMemoryApi(pendingDeleteId);
-    const updated = deleteMemory(memories, pendingDeleteId);
-    setMemories(sortByDateDesc(updated));
+    const idToDelete = pendingDeleteId || activeMemory?.id;
+    if (!idToDelete) return;
+
+    await deleteMemoryApi(idToDelete);
+    const updatedList = deleteMemory(memories, idToDelete);
+    setMemories(sortByDateDesc(updatedList));
     setPendingDeleteId(null);
+    if (activeMemory && activeMemory.id === idToDelete) {
+      setActiveMemory(null);
+    }
+    setMemoryStage("list");
+  }
+
+  function openMemory(memory) {
+    setActiveMemory(memory);
+    setMemoryStage("view");
   }
 
   return (
@@ -83,7 +102,10 @@ export default function LettersSection({ letters, lettersFolderUrl }) {
 
       <div className="flex gap-2 mb-10 relative z-10">
         <button
-          onClick={() => setTab("letters")}
+          onClick={() => {
+            setTab("letters");
+            setMemoryStage("list");
+          }}
           className={`px-5 py-2 rounded-full text-sm font-semibold transition-colors ${
             tab === "letters" ? "bg-rose text-white" : "glass text-wine"
           }`}
@@ -91,7 +113,10 @@ export default function LettersSection({ letters, lettersFolderUrl }) {
           Handwritten Letters
         </button>
         <button
-          onClick={() => setTab("messages")}
+          onClick={() => {
+            setTab("messages");
+            setMemoryStage("list");
+          }}
           className={`px-5 py-2 rounded-full text-sm font-semibold transition-colors ${
             tab === "messages" ? "bg-rose text-white" : "glass text-wine"
           }`}
@@ -125,33 +150,64 @@ export default function LettersSection({ letters, lettersFolderUrl }) {
             )}
           </motion.div>
         ) : (
-          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="w-full flex flex-col items-center gap-5">
-            <GlassButton onClick={() => setMemoryStage(memoryStage === "upload" ? "list" : "upload")}>
-              {memoryStage === "upload" ? "Cancel" : "+ Save a Memory"}
-            </GlassButton>
+          <div className="w-full max-w-lg flex flex-col items-center">
+            <AnimatePresence mode="wait">
+              {!loaded ? null : memoryStage === "create" ? (
+                <MessageUpload
+                  key="create"
+                  onSave={handleSaveMemory}
+                  onCancel={() => setMemoryStage("list")}
+                />
+              ) : memoryStage === "edit" && activeMemory ? (
+                <MessageUpload
+                  key="edit"
+                  initialMemory={activeMemory}
+                  onSave={handleSaveMemory}
+                  onCancel={() => setMemoryStage("view")}
+                />
+              ) : memoryStage === "view" && activeMemory ? (
+                <MessageViewer
+                  key="view"
+                  memory={activeMemory}
+                  onBack={() => setMemoryStage("list")}
+                  onEdit={() => setMemoryStage("edit")}
+                  onDelete={() => setPendingDeleteId(activeMemory.id)}
+                />
+              ) : (
+                <motion.div
+                  key="list"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  className="w-full flex flex-col items-center gap-5"
+                >
+                  <GlassButton onClick={() => setMemoryStage("create")}>
+                    + Save a Memory
+                  </GlassButton>
 
-            {memoryStage === "upload" ? (
-              <>
-                <MessageUpload onSave={handleSaveMemory} onCancel={() => setMemoryStage("list")} />
-                {uploadError && <p className="text-xs text-rose text-center max-w-sm">{uploadError}</p>}
-              </>
-            ) : memories.length === 0 ? (
-              <p className="text-inkrose/50 text-sm text-center">
-                No saved memories yet — save a heartfelt message, a birthday text, anything worth keeping.
-              </p>
-            ) : (
-              <div className="w-full flex flex-wrap gap-4 justify-center max-w-3xl">
-                {memories.map((memory) => (
-                  <MessageMemoryCard
-                    key={memory.id}
-                    memory={memory}
-                    onOpen={setActiveMemory}
-                    onDelete={(id) => setPendingDeleteId(id)}
-                  />
-                ))}
-              </div>
-            )}
-          </motion.div>
+                  {memories.length === 0 ? (
+                    <div className="glass rounded-2xl px-8 py-10 text-center max-w-sm shadow-glass mt-2">
+                      <p className="text-3xl mb-2">💬</p>
+                      <p className="font-display italic text-lg text-wine mb-1">Special Messages</p>
+                      <p className="text-inkrose/60 text-xs leading-relaxed">
+                        No special messages have been saved yet. Save a heartfelt text, a birthday message, or a romantic paragraph.
+                      </p>
+                    </div>
+                  ) : (
+                    <div className="w-full flex flex-wrap gap-4 justify-center max-w-3xl mt-2">
+                      {memories.map((memory) => (
+                        <MessageMemoryCard
+                          key={memory.id}
+                          memory={memory}
+                          onOpen={openMemory}
+                          onDelete={(id) => setPendingDeleteId(id)}
+                        />
+                      ))}
+                    </div>
+                  )}
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
         )}
       </div>
 
@@ -170,12 +226,10 @@ export default function LettersSection({ letters, lettersFolderUrl }) {
         />
       )}
 
-      {activeMemory && <MessageViewer memory={activeMemory} onClose={() => setActiveMemory(null)} />}
-
       <ConfirmDialog
         open={Boolean(pendingDeleteId)}
-        title="Delete this memory permanently?"
-        message="The screenshot(s) will be removed from this browser."
+        title="Delete this special message memory permanently?"
+        message="This memory will be permanently removed from your archive."
         confirmLabel="Delete"
         onConfirm={confirmDeleteMemory}
         onCancel={() => setPendingDeleteId(null)}
