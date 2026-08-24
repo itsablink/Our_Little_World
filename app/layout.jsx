@@ -1,5 +1,6 @@
 import { Fraunces, Quicksand } from "next/font/google";
 import "./globals.css";
+import TabAuthGuard from "@/components/TabAuthGuard";
 
 const fraunces = Fraunces({
   subsets: ["latin"],
@@ -28,7 +29,9 @@ export const viewport = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en" className={`${fraunces.variable} ${quicksand.variable}`}>
-      <body className="font-body antialiased">{children}</body>
+      <body className="font-body antialiased">
+        <TabAuthGuard>{children}</TabAuthGuard>
+      </body>
     </html>
   );
 }

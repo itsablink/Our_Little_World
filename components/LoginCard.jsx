@@ -26,6 +26,9 @@ export default function LoginCard() {
       const data = await res.json();
 
       if (data.ok) {
+        if (typeof window !== "undefined") {
+          window.sessionStorage.setItem("olw_tab_auth", "valid");
+        }
         router.push("/challenge");
       } else {
         setError(data.message || "That's not it. Try again.");

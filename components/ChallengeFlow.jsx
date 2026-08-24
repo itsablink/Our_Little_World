@@ -44,6 +44,9 @@ export default function ChallengeFlow({ questions }) {
   async function handleEnter() {
     setEntering(true);
     try {
+      if (typeof window !== "undefined") {
+        window.sessionStorage.setItem("olw_tab_auth", "valid");
+      }
       await fetch("/api/auth/gate", { method: "POST" });
     } finally {
       router.push("/home");

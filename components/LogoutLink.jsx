@@ -6,8 +6,11 @@ export default function LogoutLink() {
   const router = useRouter();
 
   async function handleLogout() {
+    if (typeof window !== "undefined") {
+      window.sessionStorage.removeItem("olw_tab_auth");
+    }
     await fetch("/api/auth/logout", { method: "POST" });
-    router.push("/login");
+    router.replace("/login");
   }
 
   return (

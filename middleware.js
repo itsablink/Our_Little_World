@@ -1,8 +1,6 @@
 import { NextResponse } from "next/server";
 import { SESSION_COOKIE, GATE_COOKIE, expectedSessionValue, expectedGateValue } from "@/lib/session";
 
-const GATED_SECTIONS = ["/home", "/quiz", "/diary", "/letters", "/photos"];
-
 export function middleware(request) {
   const { pathname } = request.nextUrl;
   const session = request.cookies.get(SESSION_COOKIE)?.value;
@@ -10,27 +8,35 @@ export function middleware(request) {
 
   const hasSession = session === expectedSessionValue();
   const hasGate = gate === expectedGateValue();
-  const isGatedSection = GATED_SECTIONS.some((section) => pathname.startsWith(section));
 
-  if (pathname === "/login" && hasSession && hasGate) {
+  if (pathname === "/login") {
+    if (hasSession && hasGate) {
+      return NextResponse.redirect(new URL("/home", request.url));
+    }
+    if (hasSession && !hasGate) {
+      return NextResponse.redirect(new URL("/challenge", request.url));
+    }
+    return NextResponse.next();
+  }
+
+  // Any protected route requires valid session
+  if (!hasSession) {
+    return NextResponse.redirect(new URL("/login", request.url));
+  }
+
+  if (pathname.startsWith("/challenge") && hasSession && hasGate) {
     return NextResponse.redirect(new URL("/home", request.url));
   }
 
-  if (pathname.startsWith("/challenge") && !hasSession) {
-    return NextResponse.redirect(new URL("/login", request.url));
-  }
-
-  if (isGatedSection && !hasSession) {
-    return NextResponse.redirect(new URL("/login", request.url));
-  }
-
-  if (isGatedSection && hasSession && !hasGate) {
+  if (!hasGate && !pathname.startsWith("/challenge")) {
     return NextResponse.redirect(new URL("/challenge", request.url));
   }
 
-  return NextResponse.next();
+  const response = NextResponse.next();
+  response.headers.set("Cache-Control", "no-store, max-age=0, must-revalidate");
+  return response;
 }
 
 export const config = {
-  matcher: ["/challenge/:path*", "/home/:path*", "/quiz/:path*", "/diary/:path*", "/letters/:path*", "/photos/:path*"]
+  matcher: ["/((?!api|_next/static|_next/image|favicon.ico).*)"]
 };
