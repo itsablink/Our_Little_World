@@ -12,59 +12,72 @@ import FloatingHearts from "./FloatingHearts";
 import LogoutLink from "./LogoutLink";
 import SiteNav from "./SiteNav";
 import {
-  getEntries,
   fetchEntriesFromApi,
-  addEntry,
   addEntryApi,
-  updateEntry,
   updateEntryApi,
-  deleteEntry,
   deleteEntryApi,
   sortByDateDesc
 } from "@/lib/diaryStore";
 
-export default function DiarySection({ seedEntries }) {
+export default function DiarySection() {
   const [entries, setEntries] = useState([]);
   const [stage, setStage] = useState("list"); // list | create | edit | view
   const [activeEntry, setActiveEntry] = useState(null);
   const [pendingDeleteId, setPendingDeleteId] = useState(null);
   const [loaded, setLoaded] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
 
   useEffect(() => {
     async function load() {
-      const initial = getEntries(seedEntries);
-      setEntries(sortByDateDesc(initial));
-      setLoaded(true);
-      const remote = await fetchEntriesFromApi();
-      if (remote && remote.length > 0) {
+      try {
+        const remote = await fetchEntriesFromApi();
         setEntries(sortByDateDesc(remote));
+      } catch (err) {
+        console.error("Failed to load diary entries:", err);
+        setErrorMessage(err.message || "Failed to load diary entries from server.");
+      } finally {
+        setLoaded(true);
       }
     }
     load();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   async function handleCreate(entry) {
-    const created = await addEntryApi(entry);
-    const updated = addEntry(entries, created);
-    setEntries(sortByDateDesc(updated));
-    setStage("list");
+    try {
+      setErrorMessage("");
+      const created = await addEntryApi(entry);
+      setEntries((prev) => sortByDateDesc([created, ...prev.filter((e) => e.id !== created.id)]));
+      setStage("list");
+    } catch (err) {
+      console.error("Error saving entry:", err);
+      alert("Failed to save entry: " + (err.message || "Database connection error"));
+    }
   }
 
   async function handleEditSave(patch) {
-    await updateEntryApi(activeEntry.id, patch);
-    const updated = updateEntry(entries, activeEntry.id, patch);
-    setEntries(sortByDateDesc(updated));
-    setActiveEntry({ ...activeEntry, ...patch });
-    setStage("view");
+    try {
+      setErrorMessage("");
+      const updated = await updateEntryApi(activeEntry.id, patch);
+      setEntries((prev) => sortByDateDesc(prev.map((e) => (e.id === activeEntry.id ? updated : e))));
+      setActiveEntry(updated);
+      setStage("view");
+    } catch (err) {
+      console.error("Error updating entry:", err);
+      alert("Failed to update entry: " + (err.message || "Database connection error"));
+    }
   }
 
   async function confirmDelete() {
-    await deleteEntryApi(pendingDeleteId);
-    const updated = deleteEntry(entries, pendingDeleteId);
-    setEntries(sortByDateDesc(updated));
-    setPendingDeleteId(null);
-    setStage("list");
+    try {
+      setErrorMessage("");
+      await deleteEntryApi(pendingDeleteId);
+      setEntries((prev) => prev.filter((e) => e.id !== pendingDeleteId));
+      setPendingDeleteId(null);
+      setStage("list");
+    } catch (err) {
+      console.error("Error deleting entry:", err);
+      alert("Failed to delete entry: " + (err.message || "Database connection error"));
+    }
   }
 
   function openEntry(entry) {
@@ -82,6 +95,12 @@ export default function DiarySection({ seedEntries }) {
       <p className="text-3xl mb-2 relative z-10">📖</p>
       <h1 className="font-display italic text-3xl text-wine mb-2 relative z-10">Her Diary</h1>
       <p className="text-inkrose/60 text-sm mb-8 relative z-10">A few pages, just for us.</p>
+
+      {errorMessage && (
+        <div className="relative z-10 mb-6 bg-red-100/80 border border-red-300 text-red-700 px-4 py-3 rounded-2xl text-xs max-w-md text-center">
+          {errorMessage}
+        </div>
+      )}
 
       <div className="relative z-10 w-full flex flex-col items-center">
         <AnimatePresence mode="wait">

@@ -11,7 +11,11 @@ export async function GET() {
     const memories = await getMessagesFromDb();
     return NextResponse.json({ ok: true, memories });
   } catch (error) {
-    return NextResponse.json({ ok: false, error: "Failed to load messages" }, { status: 500 });
+    console.error("[API /api/messages GET Error]", error);
+    return NextResponse.json(
+      { ok: false, error: error.message || "Failed to load messages from database" },
+      { status: 500 }
+    );
   }
 }
 
@@ -24,7 +28,11 @@ export async function POST(request) {
     const memory = await saveMessageToDb(body);
     return NextResponse.json({ ok: true, memory });
   } catch (error) {
-    return NextResponse.json({ ok: false, error: "Failed to save memory" }, { status: 500 });
+    console.error("[API /api/messages POST Error]", error);
+    return NextResponse.json(
+      { ok: false, error: error.message || "Failed to save message to database" },
+      { status: 500 }
+    );
   }
 }
 
@@ -37,7 +45,11 @@ export async function PUT(request) {
     const updated = await updateMessageInDb(id, patch);
     return NextResponse.json({ ok: true, memory: updated });
   } catch (error) {
-    return NextResponse.json({ ok: false, error: "Failed to update memory" }, { status: 500 });
+    console.error("[API /api/messages PUT Error]", error);
+    return NextResponse.json(
+      { ok: false, error: error.message || "Failed to update message in database" },
+      { status: 500 }
+    );
   }
 }
 
@@ -51,6 +63,10 @@ export async function DELETE(request) {
     await deleteMessageFromDb(id);
     return NextResponse.json({ ok: true });
   } catch (error) {
-    return NextResponse.json({ ok: false, error: "Failed to delete memory" }, { status: 500 });
+    console.error("[API /api/messages DELETE Error]", error);
+    return NextResponse.json(
+      { ok: false, error: error.message || "Failed to delete message from database" },
+      { status: 500 }
+    );
   }
 }

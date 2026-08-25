@@ -11,7 +11,11 @@ export async function GET() {
     const entries = await getDiaryEntriesFromDb();
     return NextResponse.json({ ok: true, entries });
   } catch (error) {
-    return NextResponse.json({ ok: false, error: "Failed to load entries" }, { status: 500 });
+    console.error("[API /api/diary GET Error]", error);
+    return NextResponse.json(
+      { ok: false, error: error.message || "Failed to load diary entries from database" },
+      { status: 500 }
+    );
   }
 }
 
@@ -24,7 +28,11 @@ export async function POST(request) {
     const entry = await saveDiaryEntryToDb(body);
     return NextResponse.json({ ok: true, entry });
   } catch (error) {
-    return NextResponse.json({ ok: false, error: "Failed to save entry" }, { status: 500 });
+    console.error("[API /api/diary POST Error]", error);
+    return NextResponse.json(
+      { ok: false, error: error.message || "Failed to save diary entry to database" },
+      { status: 500 }
+    );
   }
 }
 
@@ -37,7 +45,11 @@ export async function PUT(request) {
     const updated = await updateDiaryEntryInDb(id, patch);
     return NextResponse.json({ ok: true, entry: updated });
   } catch (error) {
-    return NextResponse.json({ ok: false, error: "Failed to update entry" }, { status: 500 });
+    console.error("[API /api/diary PUT Error]", error);
+    return NextResponse.json(
+      { ok: false, error: error.message || "Failed to update diary entry in database" },
+      { status: 500 }
+    );
   }
 }
 
@@ -51,6 +63,10 @@ export async function DELETE(request) {
     await deleteDiaryEntryFromDb(id);
     return NextResponse.json({ ok: true });
   } catch (error) {
-    return NextResponse.json({ ok: false, error: "Failed to delete entry" }, { status: 500 });
+    console.error("[API /api/diary DELETE Error]", error);
+    return NextResponse.json(
+      { ok: false, error: error.message || "Failed to delete diary entry from database" },
+      { status: 500 }
+    );
   }
 }

@@ -3,8 +3,8 @@
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { getEntries } from "@/lib/diaryStore";
-import { getMemories, fetchMemoriesFromApi } from "@/lib/messageStore";
+import { fetchEntriesFromApi } from "@/lib/diaryStore";
+import { fetchMemoriesFromApi } from "@/lib/messageStore";
 import { getAllLeafEvents } from "@/lib/photoIndex";
 
 function formatDate(dateStr) {
@@ -31,17 +31,6 @@ export default function TodayInOurStory({ events, diarySeed, letters }) {
         });
       });
 
-      getEntries(diarySeed).forEach((entry) => {
-        pool.push({
-          kind: "diary",
-          emoji: "📖",
-          title: "A diary entry",
-          subtitle: `${entry.heading} — ${formatDate(entry.date)}`,
-          href: "/diary",
-          external: false
-        });
-      });
-
       (letters || []).forEach((letter) => {
         pool.push({
           kind: "letter",
@@ -53,19 +42,47 @@ export default function TodayInOurStory({ events, diarySeed, letters }) {
         });
       });
 
-      const messageMemories = await fetchMemoriesFromApi();
-      const activeMemories = messageMemories && messageMemories.length > 0 ? messageMemories : getMemories([]);
-
-      activeMemories.forEach((memory) => {
-        pool.push({
-          kind: "message",
-          emoji: "💬",
-          title: memory.title || "A special message",
-          subtitle: memory.author ? `Message from ${memory.author}` : "A preserved memory in words",
-          href: "/letters?tab=messages",
-          external: false
+      try {
+        const diaryEntries = await fetchEntriesFromApi();
+        (diaryEntries || []).forEach((entry) => {
+          pool.push({
+            kind: "diary",
+            emoji: "📖",
+            title: "A diary entry",
+            subtitle: `${entry.heading} — ${formatDate(entry.date)}`,
+            href: "/diary",
+            external: false
+          });
         });
-      });
+      } catch (err) {
+        // If DB not connected or fails, fallback to diarySeed if provided
+        (diarySeed || []).forEach((entry) => {
+          pool.push({
+            kind: "diary",
+            emoji: "📖",
+            title: "A diary entry",
+            subtitle: `${entry.heading} — ${formatDate(entry.date)}`,
+            href: "/diary",
+            external: false
+          });
+        });
+      }
+
+      try {
+        const activeMemories = await fetchMemoriesFromApi();
+        (activeMemories || []).forEach((memory) => {
+          pool.push({
+            kind: "message",
+            emoji: "💬",
+            title: memory.title || "A special message",
+            subtitle: memory.author ? `Message from ${memory.author}` : "A preserved memory in words",
+            href: "/letters?tab=messages",
+            external: false
+          });
+        });
+      } catch (err) {
+        // Message memories API failed or unconfigured
+      }
 
       if (pool.length > 0) {
         setFeature(pool[Math.floor(Math.random() * pool.length)]);

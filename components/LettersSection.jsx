@@ -15,13 +15,9 @@ import FloatingHearts from "./FloatingHearts";
 import LogoutLink from "./LogoutLink";
 import SiteNav from "./SiteNav";
 import {
-  getMemories,
   fetchMemoriesFromApi,
-  addMemory,
   addMemoryApi,
-  updateMemory,
   updateMemoryApi,
-  deleteMemory,
   deleteMemoryApi,
   sortByDateDesc
 } from "@/lib/messageStore";
@@ -36,15 +32,18 @@ export default function LettersSection({ letters, lettersFolderUrl }) {
   const [activeMemory, setActiveMemory] = useState(null);
   const [pendingDeleteId, setPendingDeleteId] = useState(null);
   const [loaded, setLoaded] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
 
   useEffect(() => {
     async function load() {
-      const initial = getMemories([]);
-      setMemories(sortByDateDesc(initial));
-      setLoaded(true);
-      const remote = await fetchMemoriesFromApi();
-      if (remote && remote.length > 0) {
+      try {
+        const remote = await fetchMemoriesFromApi();
         setMemories(sortByDateDesc(remote));
+      } catch (err) {
+        console.error("Failed to load message memories:", err);
+        setErrorMessage(err.message || "Failed to load messages from server.");
+      } finally {
+        setLoaded(true);
       }
     }
     load();
@@ -57,17 +56,21 @@ export default function LettersSection({ letters, lettersFolderUrl }) {
   }
 
   async function handleSaveMemory(memoryData) {
-    if (memoryStage === "edit" && activeMemory) {
-      const updatedRecord = await updateMemoryApi(activeMemory.id, memoryData);
-      const updatedList = updateMemory(memories, activeMemory.id, memoryData);
-      setMemories(sortByDateDesc(updatedList));
-      setActiveMemory({ ...activeMemory, ...updatedRecord });
-      setMemoryStage("view");
-    } else {
-      const saved = await addMemoryApi(memoryData);
-      const { memories: updatedList } = addMemory(memories, saved);
-      setMemories(sortByDateDesc(updatedList));
-      setMemoryStage("list");
+    try {
+      setErrorMessage("");
+      if (memoryStage === "edit" && activeMemory) {
+        const updatedRecord = await updateMemoryApi(activeMemory.id, memoryData);
+        setMemories((prev) => sortByDateDesc(prev.map((m) => (m.id === activeMemory.id ? updatedRecord : m))));
+        setActiveMemory(updatedRecord);
+        setMemoryStage("view");
+      } else {
+        const saved = await addMemoryApi(memoryData);
+        setMemories((prev) => sortByDateDesc([saved, ...prev.filter((m) => m.id !== saved.id)]));
+        setMemoryStage("list");
+      }
+    } catch (err) {
+      console.error("Error saving message:", err);
+      alert("Failed to save message: " + (err.message || "Database connection error"));
     }
   }
 
@@ -75,14 +78,19 @@ export default function LettersSection({ letters, lettersFolderUrl }) {
     const idToDelete = pendingDeleteId || activeMemory?.id;
     if (!idToDelete) return;
 
-    await deleteMemoryApi(idToDelete);
-    const updatedList = deleteMemory(memories, idToDelete);
-    setMemories(sortByDateDesc(updatedList));
-    setPendingDeleteId(null);
-    if (activeMemory && activeMemory.id === idToDelete) {
-      setActiveMemory(null);
+    try {
+      setErrorMessage("");
+      await deleteMemoryApi(idToDelete);
+      setMemories((prev) => prev.filter((m) => m.id !== idToDelete));
+      setPendingDeleteId(null);
+      if (activeMemory && activeMemory.id === idToDelete) {
+        setActiveMemory(null);
+      }
+      setMemoryStage("list");
+    } catch (err) {
+      console.error("Error deleting message:", err);
+      alert("Failed to delete message: " + (err.message || "Database connection error"));
     }
-    setMemoryStage("list");
   }
 
   function openMemory(memory) {
@@ -124,6 +132,12 @@ export default function LettersSection({ letters, lettersFolderUrl }) {
           Messages
         </button>
       </div>
+
+      {errorMessage && (
+        <div className="relative z-10 mb-6 bg-red-100/80 border border-red-300 text-red-700 px-4 py-3 rounded-2xl text-xs max-w-md text-center">
+          {errorMessage}
+        </div>
+      )}
 
       <div className="relative z-10 w-full flex flex-col items-center">
         {tab === "letters" ? (
