@@ -1,6 +1,6 @@
 [
-  { "id": "2023", "label": "2023", "subtitle": "Where it all began" },
-  { "id": "2024", "label": "2024", "subtitle": "Where it all kept unfolding" },
-  { "id": "2025", "label": "2025", "subtitle": "More of us, more of everything" },
-  { "id": "2026", "label": "2026", "subtitle": "Still writing this one" }
+  { "id": "2023", "label": "2023", "subtitle": "Where it all began", "bgImage": "https://drive.google.com/file/d/186Jl8r4Kij_qejx6R-oNDIghQzSNOWa_/view?usp=drive_link" },
+  { "id": "2024", "label": "2024", "subtitle": "Where it all kept unfolding", "bgImage": "https://drive.google.com/file/d/1tCqEqeUKBusMaFvQUCTG7rh3Ow978J9y/view?usp=drive_link" },
+  { "id": "2025", "label": "2025", "subtitle": "More of us, more of everything", "bgImage": "https://drive.google.com/file/d/16lqUcpyr_35HkZxfAUgmUxqltr4a71q6/view?usp=drive_link" },
+  { "id": "2026", "label": "2026", "subtitle": "Still writing this one", "bgImage": "https://drive.google.com/file/d/1zaOldlwYveN2JG310NQIHIvE2U8yQ3B5/view?usp=drive_link" }
 ]
