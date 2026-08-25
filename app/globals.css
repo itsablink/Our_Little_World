@@ -87,7 +87,7 @@ input:focus-visible {
   width: 440px;
   height: 440px;
   background: radial-gradient(circle at 30% 30%, #F53163, transparent 70%);
-  top: -12%;
+  top: -2%;
   left: -12%;
   animation: blobFloatA 26s ease-in-out infinite;
 }
@@ -95,7 +95,7 @@ input:focus-visible {
   width: 380px;
   height: 380px;
   background: radial-gradient(circle at 60% 40%, #D1A080, transparent 70%);
-  bottom: -16%;
+  top: 30%;
   right: -10%;
   animation: blobFloatB 32s ease-in-out infinite;
 }
@@ -103,9 +103,17 @@ input:focus-visible {
   width: 320px;
   height: 320px;
   background: radial-gradient(circle at 50% 50%, #E4C2C1, transparent 70%);
-  top: 32%;
-  right: 18%;
+  top: 60%;
+  left: -8%;
   animation: blobFloatC 22s ease-in-out infinite;
+}
+.motion-bg .blob-d {
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle at 40% 40%, #F53163, transparent 70%);
+  top: 85%;
+  right: -10%;
+  animation: blobFloatA 28s ease-in-out infinite;
 }
 @keyframes blobFloatA {
   0%, 100% { transform: translate(0, 0) scale(1); }
@@ -208,7 +216,8 @@ input:focus-visible {
   pointer-events: none;
   position: absolute;
   inset: 0;
+  width: 100%;
+  height: 100%;
   overflow: hidden;
   z-index: 0;
 }
-

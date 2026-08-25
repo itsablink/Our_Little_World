@@ -15,12 +15,13 @@ export default function HomePage() {
   const yearIndex = buildYearIndex(events);
 
   return (
-    <main className="relative overflow-hidden">
+    <main className="relative overflow-hidden w-full min-h-screen">
+      {/* Persistent Animated Full-Page Background */}
+      <FloatingHearts />
       <LogoutLink />
 
       {/* Section 1 — Hero */}
-      <section className="relative min-h-screen flex flex-col items-center justify-center px-6 text-center overflow-hidden">
-        <FloatingHearts />
+      <section className="relative min-h-screen flex flex-col items-center justify-center px-6 text-center z-10">
         <p className="font-display italic text-xl text-rose mb-3 animate-pulseSoft filter drop-shadow-[0_2px_8px_rgba(245,49,99,0.3)]">
           ♡
         </p>
@@ -118,12 +119,12 @@ export default function HomePage() {
           <div className="flex justify-center mb-3">
             <span className="text-2xl animate-pulseSoft">💖</span>
           </div>
-          <p className="font-display italic text-inkrose/85 text-base md:text-lg leading-relaxed mb-4">
-            "I know I might have left a lot of cute pics and clicks of us ofc. Tbh, it's kinda not possible to condense 4 complete years of us › (thu thu thu🧿) to just a drive or website. But yaa here it is just a small gift to u sweetie — Happy Anni Dudee › ❤️✨"
+          <p className="font-display italic text-inkrose/85 text-base md:text-lg leading-relaxed mb-4 text-balance">
+            "I know I might have left a lot of cute pics and clicks of us ofc. Tbh, it's kinda not possible to condense 4 complete years of <span className="inline-block">us › (thu thu thu🧿)</span> to just a drive or website. But yaa here it is just a small gift to u sweetie — <span className="inline-block">Happy Anni Dudee › ❤️✨"</span>
           </p>
           <div className="h-px bg-wine/15 w-1/2 mx-auto my-4" />
-          <p className="font-display italic text-wine font-semibold text-sm md:text-base">
-            Let's keep growing together and expanding our happy memories to the fullest › 🧿
+          <p className="font-display italic text-wine font-semibold text-sm md:text-base text-balance">
+            Let's keep growing together and expanding our happy memories to the <span className="inline-block">fullest › 🧿</span>
           </p>
         </div>
       </section>
